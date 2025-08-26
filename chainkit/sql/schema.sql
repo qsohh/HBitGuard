@@ -1,0 +1,3 @@
+-- schema.sql
+-- Definition of the PostgreSQL schema for storing transactions and events.
+-- TODO: add CREATE TABLE statements here

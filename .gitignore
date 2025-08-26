@@ -1,0 +1,27 @@
+# .gitignore for Q_Trader
+
+# Folders to ignore
+.vscode/
+.vs/
+__pycache__/
+log/
+logs/
+
+notebooks/
+
+# .env
+*.env
+# But the sample
+!sample.env
+
+# Strategy file to hide
+chainkit/scratch.py
+
+# Test and note files
+note*
+benchmark*
+*log*
+debug*
+
+# 但保留 .gitignore 自己
+!.gitignore
