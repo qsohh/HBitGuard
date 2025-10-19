@@ -71,7 +71,7 @@ class Runner:
     def _safe_head(self) -> int:
         latest = self.w3.eth.block_number
         return max(0, latest - self.confirmations)
-    
+
     def _range_this_round(self, safe_head: int) -> tuple[int, int]:
         """
         This round we are going to demand information from start to safe_head

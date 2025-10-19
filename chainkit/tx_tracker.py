@@ -8,6 +8,11 @@ from .registry_event import build_registry, make_unknown_raw
 
 REGISTRY = build_registry()
 
+def check_tx_success(w3: Web3, tx_hash: str) -> bool:
+    """Check if a transaction was successful by its hash."""
+    receipt = w3.eth.get_transaction_receipt(tx_hash)
+    return receipt["status"] == 1
+
 def analyze_tx(w3: Web3, tx_hash: str, save_data: bool=False) -> Dict[str, Any]:
     """Analyze a transaction by its hash, decode events and record unregistered events. Can save database if necessary."""
     tx = w3.eth.get_transaction(tx_hash)
@@ -15,7 +20,6 @@ def analyze_tx(w3: Web3, tx_hash: str, save_data: bool=False) -> Dict[str, Any]:
     result = {
         "tx_hash": to_hexstr(receipt["transactionHash"]).lower(),
         "from": tx["from"].lower(),
-        "to_contract": (tx["to"] or "").lower(),
         "block_number": receipt["blockNumber"],
         "gas_used": receipt["gasUsed"],
         "status": "success" if receipt["status"] == 1 else "failed",
